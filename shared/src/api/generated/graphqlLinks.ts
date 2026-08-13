@@ -592,7 +592,6 @@ export type ProductEdge = {
 
 export type ProductNode = BaseNode & {
   __typename?: 'ProductNode';
-  Folder?: Maybe<FolderNode>;
   active: Scalars['Boolean']['output'];
   activities: ActivitiesConnection;
   allAttrib: Scalars['String']['output'];
@@ -663,6 +662,7 @@ export type ProductNodeVersionsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   folderFilter?: InputMaybe<Scalars['String']['input']>;
   folderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasHero?: InputMaybe<Scalars['Boolean']['input']>;
   hasLinks?: InputMaybe<HasLinksFilter>;
   hasReviewables?: InputMaybe<Scalars['Boolean']['input']>;
   heroOnly?: Scalars['Boolean']['input'];
@@ -905,6 +905,7 @@ export type ProjectNodeFoldersArgs = {
   statuses?: InputMaybe<Array<Scalars['String']['input']>>;
   tags?: InputMaybe<Array<Scalars['String']['input']>>;
   taskFilter?: InputMaybe<Scalars['String']['input']>;
+  taskSearch?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1035,6 +1036,7 @@ export type ProjectNodeVersionsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   folderFilter?: InputMaybe<Scalars['String']['input']>;
   folderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasHero?: InputMaybe<Scalars['Boolean']['input']>;
   hasLinks?: InputMaybe<HasLinksFilter>;
   hasReviewables?: InputMaybe<Scalars['Boolean']['input']>;
   heroOnly?: Scalars['Boolean']['input'];
@@ -1346,7 +1348,6 @@ export type TaskEdge = {
 
 export type TaskNode = BaseNode & {
   __typename?: 'TaskNode';
-  Folder?: Maybe<FolderNode>;
   active: Scalars['Boolean']['output'];
   activities: ActivitiesConnection;
   allAttrib: Scalars['String']['output'];
@@ -1417,6 +1418,7 @@ export type TaskNodeVersionsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   folderFilter?: InputMaybe<Scalars['String']['input']>;
   folderIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasHero?: InputMaybe<Scalars['Boolean']['input']>;
   hasLinks?: InputMaybe<HasLinksFilter>;
   hasReviewables?: InputMaybe<Scalars['Boolean']['input']>;
   heroOnly?: Scalars['Boolean']['input'];
