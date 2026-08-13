@@ -38,7 +38,7 @@ const StyledTable = styled.table`
 `
 
 const StyledThead = styled.thead`
-  background-color: var(--md-sys-color-surface-container-lowest-dark);
+  background-color: var(--md-sys-color-surface-container-lowest);
   position: sticky;
   top: 0;
   z-index: 10;

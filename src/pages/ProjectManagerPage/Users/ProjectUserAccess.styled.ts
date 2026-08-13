@@ -16,7 +16,7 @@ export const DataColumn = styled.div`
   align-items: center;
   gap: var(--base-gap-large);
   .partial-match {
-    color: var(--md-ref-palette-neutral-variant60);
+    color: var(--md-sys-color-outline);
   }
   button {
     visibility: hidden;
@@ -46,7 +46,7 @@ export const CompactPlaceholder = styled.div`
   p {
     margin: 0;
     padding: var(--padding-m);
-    color: var(--md-ref-palette-neutral-variant60);
+    color: var(--md-sys-color-outline);
   }
 `
 
@@ -67,7 +67,7 @@ export const DataTable = styled(BaseDataTable)`
 
   /* Data attribute-based hover highlighting for better performance */
   tr[data-hover="true"] {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--color-row-hover-wash);
 
     button {
       visibility: visible;

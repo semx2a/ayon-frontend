@@ -60,6 +60,7 @@ import { useLazyGetSiteInfoQuery, useGetYnputCloudInfoQuery } from '@shared/api'
 
 // hooks
 import useTooltip from '@hooks/Tooltip/useTooltip'
+import { useThemeSync } from '@hooks/useTheme'
 import LauncherAuthPage from '@pages/LauncherAuthPage'
 import ReleaseInstallerDialog from '@containers/ReleaseInstallerDialog/ReleaseInstallerDialog'
 import getTrialDates from '@components/TrialBanner/helpers/getTrialDates'
@@ -93,6 +94,8 @@ const App = () => {
   const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false)
   const [serverError, setServerError] = useState(false)
+  // keeps <html data-theme> in step with the saved preference and the OS
+  useThemeSync()
   const [isOnboarding, setIsOnboarding] = useState(false)
   const [noAdminUser, setNoAdminUser] = useState(false)
 

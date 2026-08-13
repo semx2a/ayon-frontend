@@ -8,7 +8,12 @@ export const TrialEndContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to right top, #1f292f, #232e35, #28323b, #2c3741, #313c47);
+  background-image: linear-gradient(
+    to right top,
+    var(--md-sys-color-surface-container-lowest),
+    var(--md-sys-color-surface-container),
+    var(--md-sys-color-surface-container-high)
+  );
   nav {
     position: fixed;
     left: 0;

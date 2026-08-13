@@ -333,7 +333,8 @@ const Products = () => {
         width: 120,
         body: (node) => {
           if (!node.data.productType) return ''
-          const color = project.getProductType(node.data.productType).color || '#cccccc'
+          const color =
+            project.getProductType(node.data.productType).color || 'var(--md-sys-color-on-surface)'
 
           return <CellWithIcon text={node.data.productType} textStyle={{ color }} />
         },

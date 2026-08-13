@@ -68,14 +68,19 @@ const LabelContainer = styled.div`
     margin: 1rem 0;
   }
 
+  /* container tokens, not the -dark "on" colours these used to reach for: those
+     resolve to white in the light theme and made the banners unreadable */
   &.info {
-    background-color: var(--md-sys-color-on-secondary-dark);
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
   }
   &.warning {
-    background-color: var(--md-sys-color-warning-container-dark);
+    background-color: var(--md-sys-color-warning-container);
+    color: var(--md-sys-color-on-warning-container);
   }
   &.error {
-    background-color: var(--md-sys-color-on-error-dark);
+    background-color: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
   }
 `
 

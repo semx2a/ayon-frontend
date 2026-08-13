@@ -11,14 +11,14 @@
 .loading:not(.no-shimmer):not(.p-treetable):not(.p-datatable),
 .p-treetable .p-treetable-tbody > tr.loading,
 .p-datatable .p-datatable-tbody > tr.loading {
-  /* Shimmer Effect Variables */
+  /* Shimmer Effect Variables. Themes override the lightness trio, see themes.scss */
   --shimmer-hue: 215;
   --shimmer-saturation: 15%;
-  --shimmer-base-lightness: 15%;
-  --shimmer-highlight-lightness: 16.5%;
+  --shimmer-base-lightness: var(--shimmer-lightness-base, 15%);
+  --shimmer-highlight-lightness: var(--shimmer-lightness-highlight, 16.5%);
 
   /* Adjustment Variable */
-  --shimmer-lightness-delta: 2%;
+  --shimmer-lightness-delta: var(--shimmer-lightness-step, 2%);
 
   /* Shimmer Lightness */
   --shimmer-lightness: var(--shimmer-base-lightness);

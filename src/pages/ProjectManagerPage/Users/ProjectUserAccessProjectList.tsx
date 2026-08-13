@@ -26,7 +26,7 @@ const StyledProjectName = styled.div`
 
   &:not(.isActive) {
     font-style: italic;
-    color: var(--md-ref-palette-secondary50);
+    color: var(--md-sys-color-outline);
   }
 
   &:not(.isOpen) {

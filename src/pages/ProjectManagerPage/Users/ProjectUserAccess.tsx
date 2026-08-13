@@ -51,7 +51,7 @@ import { useSessionStorage } from '@shared/hooks'
 const StyledButton = styled(Button)`
   .shortcut {
     padding: 4px;
-    background-color: var(--md-sys-color-primary-container-dark);
+    background-color: var(--md-sys-color-primary-container);
     border-radius: var(--border-radius-m);
   }
 `

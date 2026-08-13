@@ -83,7 +83,7 @@ export const BundleCard = styled.div`
     align-items: center;
     gap: var(--base-gap-small);
     .icon {
-      color: black;
+      color: var(--color-on-hl);
     }
   }
 `

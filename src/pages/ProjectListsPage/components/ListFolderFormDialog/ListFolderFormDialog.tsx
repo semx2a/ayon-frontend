@@ -197,7 +197,7 @@ export const ListFolderFormDialog: FC<ListFolderFormDialogProps> = ({}) => {
       }
     >
       {mode === 'create' && listCount > 1 && (
-        <p style={{ margin: '0 0 16px 0', color: 'var(--color-text-dim)', fontSize: '14px' }}>
+        <p style={{ margin: '0 0 16px 0', color: 'var(--md-sys-color-outline)', fontSize: '14px' }}>
           This folder will be assigned to {listCount} selected lists.
         </p>
       )}

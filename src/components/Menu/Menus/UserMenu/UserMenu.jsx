@@ -1,6 +1,7 @@
 import UserMenuHeader from './UserMenuHeader'
 import { Menu } from '@shared/components'
 import { useLogoutMutation } from '@queries/auth/logout'
+import ThemeSwitcher from '@components/ThemeSwitcher/ThemeSwitcher'
 
 export const UserMenu = ({ user, ...props }) => {
   const fullName = user?.attrib?.fullName
@@ -30,6 +31,12 @@ export const UserMenu = ({ user, ...props }) => {
     })
     items.push({ id: 'divider' })
   }
+
+  items.push({
+    id: 'theme',
+    node: <ThemeSwitcher key="theme" />,
+  })
+  items.push({ id: 'divider' })
 
   items.push({
     id: 'signOut',

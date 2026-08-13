@@ -38,7 +38,7 @@ const StyledClose = styled(Button)`
   border-radius: 100%;
   transition: opacity 400ms, background-color 400ms;
   &:hover {
-    background-color: #3d3e40;
+    background-color: var(--md-sys-color-surface-container-highest);
   }
 `
 
@@ -58,7 +58,7 @@ export const PiPWrapper: FC<PiPWrapperProps> = ({ children }) => {
         header={<StyledClose icon="close" className="close" onClick={closePipWindow} />}
         headerStyle={{
           padding: 4,
-          backgroundColor: '#202124',
+          backgroundColor: 'var(--md-sys-color-surface-container-low)',
           border: 'none',
           height: 33,
         }}

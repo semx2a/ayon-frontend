@@ -23,7 +23,7 @@ export const FeedContainer = styled.section`
     background: linear-gradient(
       to bottom,
       var(--md-sys-color-surface-container-low) 20%,
-      rgba(255, 255, 255, 0) 100%
+      transparent 100%
     );
     z-index: 1;
   }

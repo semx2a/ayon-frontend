@@ -316,7 +316,7 @@ const BundlesAddonList = React.forwardRef<any, BundlesAddonListProps>(
                 // TODO: compare with staging version if we're showing a staging project bundle
                 if (currentVersion === undefined || !addon.projectCanOverrideAddonVersion) {
                   return (
-                    <span style={{ color: '#666' }}>
+                    <span style={{ color: 'var(--md-sys-color-outline)' }}>
                       <Icon icon="lock" />
                       {productionVersion || 'NONE'}
                       {!addon.projectCanOverrideAddonVersion && ' (cannot override)'}

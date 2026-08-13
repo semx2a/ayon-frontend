@@ -50,22 +50,19 @@ export const Badge = (props: BadgeProps) => {
   } else if (label && WELL_KNOWN_BADGES.includes(label.toLowerCase())) {
     backgroundColor = `var(--color-hl-${label.toLowerCase()})`
   }
-  const foregroundColor = backgroundColor ? getTextColor(backgroundColor) : '#e0e0e0'
+  const foregroundColor = backgroundColor
+    ? getTextColor(backgroundColor)
+    : 'var(--md-sys-color-on-surface)'
 
   nstyle.backgroundColor = backgroundColor
   nstyle.color = foregroundColor
 
   if (backgroundColor) {
-    nstyle.fontSize= '0.9rem';
+    nstyle.fontSize = '0.9rem'
   }
 
   return (
-    <BaseBadge
-      style={nstyle}
-      className={className}
-      aria-label={label}
-      {...additionalProps}
-    >
+    <BaseBadge style={nstyle} className={className} aria-label={label} {...additionalProps}>
       {label}
     </BaseBadge>
   )

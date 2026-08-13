@@ -14,6 +14,7 @@
     "generate-rest-all": "yarn download-openapi && npx @rtk-query/codegen-openapi ./gen/openapi-config.ts && node ./gen/process-api-types.js",
     "generate-rest": " yarn download-openapi && npx @rtk-query/codegen-openapi ./gen/openapi-config.ts",
     "generate-gql": "cd gen && graphql-codegen --require dotenv/config",
+    "generate-light-theme": "node ./gen/generate-light-theme.js",
     "test": "npx playwright test",
     "test-ui": "npx playwright test --ui",
     "test-auth": "npx playwright test auth.setup.js",

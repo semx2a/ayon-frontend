@@ -60,10 +60,10 @@ export const BadgeButton = styled(Button)<BadgeButtonProps>`
     css`
       gap: 2px;
       background-color: ${`var(--color-hl-${$hl})`};
-      color: black;
+      color: var(--color-on-hl);
 
       .icon {
-        color: black;
+        color: var(--color-on-hl);
       }
 
       &:hover {

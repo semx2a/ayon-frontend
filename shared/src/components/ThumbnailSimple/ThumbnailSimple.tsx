@@ -36,7 +36,7 @@ const ThumbnailStyled = styled.div`
     justify-content: center;
     align-items: center;
     inset: 0;
-    background-color: hsl(220 20% 8%);
+    background-color: var(--md-sys-color-surface-container-lowest);
     color: var(--md-sys-color-outline);
   }
 `

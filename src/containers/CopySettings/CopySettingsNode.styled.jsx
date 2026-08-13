@@ -70,14 +70,14 @@ const ChangeValue = styled.span`
   border-radius: 3px;
   padding: 2px 6px;
   background-color: var(--color-grey-04);
-  color: #dddddd;
+  color: var(--md-sys-color-on-surface);
   cursor: pointer;
   margin: 2px;
   font-size: 0.8rem;
 
   &.dim {
     font-style: italic;
-    color: #949494;
+    color: var(--md-sys-color-outline);
   }
 
   ${props => props.$level === 'studio' && `

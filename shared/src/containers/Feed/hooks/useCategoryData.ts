@@ -1,7 +1,8 @@
 import { useMemo } from "react"
 import { useFeedContext } from "../context/FeedContext"
 
-const FALLBACK_COLOR = '#c5c5c5'
+// stands in for a category whose colour is missing, so it has to follow the theme
+const FALLBACK_COLOR = 'var(--md-sys-color-outline)'
 
 export function useCategoryData(category?: string) {
   const { categories } = useFeedContext()

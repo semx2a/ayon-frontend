@@ -33,7 +33,7 @@ export const MessageCard = styled.div`
     --message-background-color: var(--md-sys-color-warning-container);
     --message-color: var(--md-sys-color-on-warning-container);
     --button-background-color: var(--md-sys-color-warning);
-    --button-background-color-hover: hsl(25, 100%, 80%);
+    --button-background-color-hover: var(--md-sys-color-warning-hover);
     --button-color: var(--md-sys-color-on-warning);
   }
 

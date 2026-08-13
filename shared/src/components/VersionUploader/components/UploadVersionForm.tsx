@@ -56,7 +56,7 @@ const InlineButton = styled.button`
   font-family: inherit;
 
   &:hover {
-    color: var(--md-sys-color-primary-dark);
+    color: var(--md-sys-color-primary-hover);
   }
 `
 

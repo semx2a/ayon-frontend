@@ -17,6 +17,8 @@ const userSlice = createSlice({
         filters: {},
         columnSizes: {},
         pageSettings: {},
+        // theme is intentionally absent: a default here would read as a saved
+        // preference and overwrite the locally chosen theme on every boot
       },
       isAdmin: false,
       isManager: false,

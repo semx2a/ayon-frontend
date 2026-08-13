@@ -18,8 +18,8 @@ const InlineSpinner = styled.div`
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
+  border: 2px solid var(--md-sys-color-outline-variant);
+  border-top-color: var(--md-sys-color-on-surface);
   animation: ${spin} 0.8s linear infinite;
 `
 

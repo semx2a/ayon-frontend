@@ -43,6 +43,14 @@ strong {
 }
 
 :root {
+  // Elevation. The design system ships no --md-sys-shadow-* tokens, but two
+  // overlays reference them, so `box-shadow: var(...)` resolved to nothing and
+  // they rendered flat. Values are the Material 3 levels the names imply.
+  // Shadows are the same in both themes, so these are not re-declared for light.
+  --md-sys-shadow-level-2: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-shadow-elevation-4: 0px 2px 3px rgba(0, 0, 0, 0.3),
+    0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+
   // developer colors
   --color-hl-developer-container: hsl(272, 23%, 22%);
   --color-hl-developer-container-hover: hsl(272, 23%, 25%);
@@ -50,6 +58,20 @@ strong {
   --color-hl-developer-surface: hsl(272, 30%, 70%);
   --color-hl-developer-surface-hover: hsl(272, 30%, 75%);
   --color-hl-dev: hsl(272 100% 78%);
+
+  // Selected field row in the settings editor. A black wash is fine on a dark
+  // page (-3.3 L*) but the same alpha over a light one is a heavy grey band, so
+  // the light theme dials the alpha down to match that perceptual step.
+  --color-field-selected: rgba(0, 0, 0, 0.2);
+
+  // Row hover wash. Lightens on a dark page, darkens on a light one, tuned so
+  // both land on roughly the same +/-3 L* step.
+  --color-row-hover-wash: rgba(255, 255, 255, 0.06);
+
+  // Text drawn on top of a --color-hl-* badge. The highlight colours are light
+  // pastels in this theme, so black reads on them; the light theme darkens them
+  // and flips this to white.
+  --color-on-hl: black;
 
   // production colors
   --color-hl-production: var(--md-sys-color-tertiary);
@@ -104,6 +126,18 @@ strong {
 
   // tag colors
   --color-tag-text: hsl(180, 5%, 96%);
+
+  // role colors
+  --color-role-privileged: hsl(35, 100%, 83%);
+  --color-role-default: hsl(0, 0%, 88%);
+  --color-role-partial: hsl(0, 0%, 56%);
+
+  // json syntax colors, used by the read-only code editor in details dialogs
+  --color-code-property: hsl(266, 84%, 81%);
+  --color-code-string: hsl(137, 47%, 60%);
+  --color-code-number: hsl(29, 70%, 66%);
+  --color-code-null: hsl(209, 13%, 54%);
+  --color-code-punctuation: hsl(200, 15%, 73%);
 }
 
 #root {

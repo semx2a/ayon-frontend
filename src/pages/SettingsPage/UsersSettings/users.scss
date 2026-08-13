@@ -1,20 +1,20 @@
 .role {
   margin-right: 4px;
   &.admin {
-    color: #ffddaa;
+    color: var(--color-role-privileged);
   }
   &.manager {
-    color: #ffddaa;
+    color: var(--color-role-privileged);
   }
   &.default {
-    color: #e0e0e0;
+    color: var(--color-role-default);
   }
   &.all {
-    color: #e0e0e0;
+    color: var(--color-role-default);
   }
   &.partial {
     font-style: italic;
-    color: #909090;
+    color: var(--color-role-partial);
   }
 }
 

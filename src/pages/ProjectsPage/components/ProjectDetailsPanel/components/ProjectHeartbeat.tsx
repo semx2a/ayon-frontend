@@ -2,6 +2,7 @@ import { Chart } from 'primereact/chart'
 import styled from 'styled-components'
 import { useGetProjectDashboardQuery } from '@queries/getProjectDashboard'
 import { memo } from 'react'
+import useTokenColor from '@hooks/useTokenColor'
 
 const ChartStyled = styled(Chart)`
   width: 100%;
@@ -27,6 +28,9 @@ const ProjectHeartbeat = ({ projectName }: ProjectHeartbeatProps) => {
     isError,
   } = useGetProjectDashboardQuery({ projectName, panel: 'activity' })
 
+  // chart.js paints to canvas, so the token has to be resolved first
+  const lineColor = useTokenColor('--md-sys-color-outline', '#8B9198')
+
   let { activity } = data as { activity?: number[] }
 
   if (isError || isFetching) {
@@ -39,7 +43,7 @@ const ProjectHeartbeat = ({ projectName }: ProjectHeartbeatProps) => {
       {
         data: activity,
         fill: false,
-        borderColor: '#8B9198',
+        borderColor: lineColor,
         borderWidth: 2,
         borderCapStyle: 'round',
         borderJoinStyle: 'round',

@@ -5,7 +5,7 @@ const DiscordIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
-    fill="#FFF"
+    fill="currentColor"
     className="oauth-icon"
     viewBox="0 0 16 16"
   >
@@ -18,7 +18,7 @@ const GoogleIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
-    fill="#FFF"
+    fill="currentColor"
     className="oauth-icon"
     viewBox="0 0 16 16"
   >
@@ -31,7 +31,7 @@ const SlackIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
-    fill="#FFF"
+    fill="currentColor"
     className="oauth-icon"
     viewBox="0 0 16 16"
   >

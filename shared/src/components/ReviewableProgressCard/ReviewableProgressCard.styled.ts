@@ -97,7 +97,7 @@ export const Type = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: var(--md-sys-color-surface-container-high-low);
+  background-color: var(--md-sys-color-surface-container-high);
   border-radius: var(--border-radius-m);
   overflow: hidden;
 
