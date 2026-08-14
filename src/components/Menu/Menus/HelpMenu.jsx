@@ -1,9 +1,16 @@
 import React from 'react'
 import { Menu } from '@shared/components'
 import { useFeedback } from '@shared/components'
+import useTheme from '@hooks/useTheme'
 
 export const HelpMenu = ({ user, ...props }) => {
   const { openSupport, openFeedback, openPortal, loaded } = useFeedback()
+  const { resolved: theme } = useTheme()
+
+  // the mark is a flat <img>, so CSS cannot recolour it. Discord ships one file per
+  // background, and their brand guidelines ask for the black mark on light surfaces
+  // rather than an inverted white one.
+  const discordIcon = theme === 'light' ? '/Discord-Symbol-Black.svg' : '/Discord-Symbol-White.svg'
 
   const help = [
     {
@@ -17,7 +24,7 @@ export const HelpMenu = ({ user, ...props }) => {
       id: 'discord',
       label: 'Discord Server',
       link: 'https://discord.gg/ynput',
-      img: '/Discord-Symbol-White.svg',
+      img: discordIcon,
       target: '_blank',
     },
     { id: 'divider' },

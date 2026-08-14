@@ -59,6 +59,8 @@ const COLOR_MAP = {
   '#64b5f6': 'var(--md-sys-color-primary)',
   '#212529': 'var(--md-sys-color-on-primary)',
   'rgba(100,181,246,.16)': 'var(--md-sys-color-primary-container)',
+  // the same colour as the line above, written as 8-digit hex (alpha 0x29 = 16%)
+  '#64b5f629': 'var(--md-sys-color-primary-container)',
 }
 
 // longest first so #ffffffde is matched before any shorter prefix
@@ -66,16 +68,28 @@ const LITERALS = Object.keys(COLOR_MAP).sort((a, b) => b.length - a.length)
 
 const normalise = (value) => value.replace(/\s+/g, '').toLowerCase()
 
+const isHexLiteral = (literal) => /^#[0-9a-f]+$/i.test(literal)
+
 /** Swaps every mapped literal in a declaration value. Returns null if none hit. */
 const remapValue = (value) => {
   let out = value
   let changed = false
   for (const literal of LITERALS) {
     // compare on a whitespace-free copy so `rgba(255, 255, 255, .87)` matches too
-    const pattern = new RegExp(
-      literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/,/g, ',\\s*'),
-      'gi',
-    )
+    const escaped = literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/,/g, ',\\s*')
+    /*
+     * A hex literal must not match a *prefix* of a longer one. `#64b5f6` used to
+     * match inside `#64b5f629`, swapping the first six digits and stranding the
+     * alpha pair: `var(--md-sys-color-primary)29`. That is invalid CSS, so the
+     * browser dropped the whole declaration and the rule silently did nothing.
+     *
+     * With the boundary, an 8-digit literal is only remapped when COLOR_MAP names
+     * it outright. That is deliberate: an unmapped alpha colour is left alone,
+     * which is right for the fully transparent ones (`#1e1e1e00`), since
+     * transparent reads the same in both themes and needs no override.
+     */
+    const boundary = isHexLiteral(literal) ? '(?![0-9a-f])' : ''
+    const pattern = new RegExp(escaped + boundary, 'gi')
     if (pattern.test(out)) {
       out = out.replace(pattern, COLOR_MAP[literal])
       changed = true
@@ -118,6 +132,77 @@ const narrowToColour = (prop, value) => {
   return [prop, v]
 }
 
+const BORDER_SIDES = ['top', 'right', 'bottom', 'left']
+
+/**
+ * The colour longhands a property is capable of setting. `border` reaches every
+ * side, `background` only ever means `background-color` by the time we get here.
+ */
+const colourTargets = (prop) => {
+  const p = prop.toLowerCase()
+  if (p === 'background' || p === 'background-color') return ['background-color']
+  if (p === 'border' || p === 'border-color')
+    return ['border-color', ...BORDER_SIDES.map((side) => `border-${side}-color`)]
+  const side = /^border-(top|right|bottom|left)(-color)?$/.exec(p)
+  if (side) return [`border-${side[1]}-color`]
+  return [p]
+}
+
+const contextOf = (rule) =>
+  rule.parent?.type === 'atrule' ? `@${rule.parent.name} ${rule.parent.params}` : ''
+
+/**
+ * Indexes every rule by selector so we can tell whether a *later* rule already
+ * set the same property.
+ */
+const buildOverrideIndex = (root) => {
+  const index = new Map()
+  let order = 0
+  root.walkRules((rule) => {
+    const position = order++
+    const context = contextOf(rule)
+    const targets = new Set()
+    rule.walkDecls((decl) => {
+      for (const target of colourTargets(decl.prop)) targets.add(target)
+    })
+    if (!targets.size) return
+    for (const part of rule.selector.split(',')) {
+      const key = `${context}||${part.trim()}`
+      const entries = index.get(key) || []
+      entries.push({ position, targets })
+      index.set(key, entries)
+    }
+  })
+  return index
+}
+
+/**
+ * True when a later rule with the same selector already overrode this property,
+ * so the declaration never applies in dark mode either and must not be re-emitted
+ * for light.
+ *
+ * The design system does this deliberately: the compiled PrimeReact theme paints
+ * `.p-splitter` `#1e1e1e`, then a later `.p-splitter` rule resets it to
+ * `transparent`. Remapping the first rule in isolation put a surface colour back
+ * on the splitter in light mode only, covering the page background.
+ *
+ * Only an exact selector match counts. A later rule with the same selector always
+ * wins on source order, which makes this provably dead; anything subtler is left
+ * alone rather than guessed at. For a grouped selector the declaration has to be
+ * dead for every part before it is dropped.
+ */
+const isOverriddenLater = (index, rule, position, prop) => {
+  const context = contextOf(rule)
+  return rule.selector
+    .split(',')
+    .map((part) => part.trim())
+    .every((part) =>
+      (index.get(`${context}||${part}`) || []).some(
+        (entry) => entry.position > position && entry.targets.has(prop),
+      ),
+    )
+}
+
 const main = () => {
   if (!fs.existsSync(SOURCE)) {
     console.error(`Design system stylesheet not found at ${SOURCE}. Run "yarn install" first.`)
@@ -125,11 +210,17 @@ const main = () => {
   }
 
   const root = postcss.parse(fs.readFileSync(SOURCE, 'utf8'))
+  const overrideIndex = buildOverrideIndex(root)
   const blocks = []
   let ruleCount = 0
   let declCount = 0
+  let deadCount = 0
+
+  // counted over every rule, so it stays in step with the override index
+  let position = -1
 
   root.walkRules((rule) => {
+    position += 1
     const selector = rule.selector
     // :root is handled by hand in themes.scss, and non-PrimeReact rules already
     // use tokens
@@ -142,6 +233,11 @@ const main = () => {
       const remapped = remapValue(decl.value)
       if (!remapped) return
       const [prop, value] = narrowToColour(decl.prop, remapped)
+      // a later rule already killed this one, so light must not revive it
+      if (isOverriddenLater(overrideIndex, rule, position, prop)) {
+        deadCount += 1
+        return
+      }
       decls.push(`  ${prop}: ${value}${decl.important ? ' !important' : ''};`)
     })
     if (!decls.length) return
@@ -168,6 +264,7 @@ const main = () => {
   fs.writeFileSync(OUTPUT, `${header}${blocks.join('\n\n')}\n`)
   console.log(`Wrote ${path.relative(process.cwd(), OUTPUT)}`)
   console.log(`  ${ruleCount} rules, ${declCount} declarations`)
+  console.log(`  ${deadCount} declarations skipped, already overridden later in the source`)
 }
 
 main()

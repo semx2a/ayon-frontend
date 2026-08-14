@@ -1,6 +1,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react'
 import { useGetFeedbackVerificationQuery } from '@shared/api'
 import { useGlobalContext } from '@shared/context'
+import { getResolvedTheme, useResolvedTheme } from '@shared/hooks'
 import { FeedbackContext } from './FeedbackContextInstance'
 
 export type FeedbackContextType = {
@@ -97,7 +98,7 @@ export const FeedbackProvider: React.FC<FeedbackProviderProps> = ({ children }) 
       win.Featurebase(
         'boot',
         {
-          theme: 'dark',
+          theme: getResolvedTheme(),
           ...verification?.data,
         },
         (err: any) => {
@@ -146,7 +147,7 @@ export const FeedbackProvider: React.FC<FeedbackProviderProps> = ({ children }) 
           autoOpenForNewUpdates: true,
         },
         category: categories,
-        theme: 'dark',
+        theme: getResolvedTheme(),
       })
     }
     return false
@@ -160,7 +161,7 @@ export const FeedbackProvider: React.FC<FeedbackProviderProps> = ({ children }) 
         'initialize_feedback_widget',
         {
           organization: 'ayon',
-          theme: 'dark',
+          theme: getResolvedTheme(),
           metadata: {},
         },
         (error: any) => {
@@ -207,7 +208,7 @@ export const FeedbackProvider: React.FC<FeedbackProviderProps> = ({ children }) 
         {
           organization: 'ayon',
           placement: 'bottom-right',
-          theme: 'dark',
+          theme: getResolvedTheme(),
           email: user?.attrib?.email,
           featurebaseJwt: verification?.data?.featurebaseJwt,
           locale: 'en',
@@ -288,6 +289,16 @@ export const FeedbackProvider: React.FC<FeedbackProviderProps> = ({ children }) 
     // initialize the messenger widget
     initializeMessenger()
   }, [verification, isLoadingVerification, scriptLoaded])
+
+  // The widgets render in iframes, so our tokens cannot reach them and they have
+  // to be told when the theme flips. Featurebase only accepts 'light' or 'dark',
+  // which is what the host already resolved onto <html data-theme>.
+  const theme = useResolvedTheme()
+  useEffect(() => {
+    if (!scriptLoaded) return
+    const win = window as any
+    if (typeof win.Featurebase === 'function') win.Featurebase('setTheme', theme)
+  }, [theme, scriptLoaded])
 
   const openFeedback: FeedbackContextType['openFeedback'] = () => {
     window.postMessage({

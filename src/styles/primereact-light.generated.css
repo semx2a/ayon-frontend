@@ -3,7 +3,7 @@
  * Run `yarn generate-light-theme` to rebuild after upgrading
  * @ynput/ayon-react-components. See gen/generate-light-theme.js.
  *
- * 474 rules, 711 declarations remapped to design tokens.
+ * 464 rules, 670 declarations remapped to design tokens.
  */
 :where(html[data-theme='light']) .p-text-secondary {
   color: var(--md-sys-color-on-surface-variant);
@@ -22,7 +22,6 @@
 }
 
 :where(html[data-theme='light']) .p-dropdown-panel {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
   border-color: var(--md-sys-color-outline-variant);
 }
@@ -143,14 +142,12 @@
 }
 
 :where(html[data-theme='light']) .p-multiselect-panel {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
   border-color: var(--md-sys-color-outline-variant);
 }
 
 :where(html[data-theme='light']) .p-multiselect-panel .p-multiselect-header {
   color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-multiselect-filter-icon {
@@ -758,9 +755,7 @@
 }
 
 :where(html[data-theme='light']) .p-datatable .p-datatable-thead>tr>th {
-  border-color: var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-datatable .p-datatable-tfoot>tr>td {
@@ -788,7 +783,6 @@
 }
 
 :where(html[data-theme='light']) .p-datatable .p-sortable-column.p-highlight {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-primary);
 }
 
@@ -806,12 +800,7 @@
 }
 
 :where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
-}
-
-:where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr>td {
-  border-color: var(--md-sys-color-outline-variant);
 }
 
 :where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr>td .p-row-toggler,
@@ -835,16 +824,7 @@
 }
 
 :where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr.p-highlight {
-  background-color: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-surface);
-}
-
-:where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr.p-datatable-dragpoint-top>td {
-  box-shadow: inset 0 2px var(--md-sys-color-primary)29;
-}
-
-:where(html[data-theme='light']) .p-datatable .p-datatable-tbody>tr.p-datatable-dragpoint-bottom>td {
-  box-shadow: inset 0 -2px var(--md-sys-color-primary)29;
 }
 
 :where(html[data-theme='light']) .p-datatable.p-datatable-selectable .p-datatable-tbody>tr.p-selectable-row:not(.p-highlight):not(.p-datatable-emptymessage):hover {
@@ -1073,7 +1053,6 @@
 }
 
 :where(html[data-theme='light']) .p-paginator {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface-variant);
   border: solid var(--md-sys-color-outline-variant);
 }
@@ -1103,7 +1082,7 @@
 
 :where(html[data-theme='light']) .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
   background-color: var(--md-sys-color-primary-container);
-  border-color: var(--md-sys-color-primary)29;
+  border-color: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -1205,9 +1184,7 @@
 }
 
 :where(html[data-theme='light']) .p-treetable .p-treetable-thead>tr>th {
-  border-color: var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-treetable .p-treetable-tfoot>tr>td {
@@ -1248,10 +1225,6 @@
   color: var(--md-sys-color-on-surface);
 }
 
-:where(html[data-theme='light']) .p-treetable .p-treetable-tbody>tr>td {
-  border-color: var(--md-sys-color-outline-variant);
-}
-
 :where(html[data-theme='light']) .p-treetable .p-treetable-tbody>tr>td .p-treetable-toggler {
   color: var(--md-sys-color-on-surface-variant);
 }
@@ -1266,7 +1239,6 @@
 }
 
 :where(html[data-theme='light']) .p-treetable .p-treetable-tbody>tr.p-highlight {
-  background-color: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -1348,14 +1320,12 @@
 
 :where(html[data-theme='light']) .p-fieldset {
   border-color: var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
 
 :where(html[data-theme='light']) .p-fieldset .p-fieldset-legend {
   border-color: var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a {
@@ -1368,22 +1338,12 @@
   color: var(--md-sys-color-on-surface);
 }
 
-:where(html[data-theme='light']) .p-divider .p-divider-content {
-  background-color: var(--md-sys-color-surface-container);
-}
-
 :where(html[data-theme='light']) .p-divider.p-divider-horizontal:before {
   border-top: 1px var(--md-sys-color-outline-variant);
 }
 
 :where(html[data-theme='light']) .p-divider.p-divider-vertical:before {
   border-left: 1px var(--md-sys-color-outline-variant);
-}
-
-:where(html[data-theme='light']) .p-panel .p-panel-header {
-  border-color: var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container);
-  color: var(--md-sys-color-on-surface);
 }
 
 :where(html[data-theme='light']) .p-panel .p-panel-header .p-panel-header-icon {
@@ -1396,8 +1356,6 @@
 }
 
 :where(html[data-theme='light']) .p-panel .p-panel-content {
-  border-color: var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -1408,13 +1366,7 @@
 }
 
 :where(html[data-theme='light']) .p-splitter {
-  border-color: var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
-}
-
-:where(html[data-theme='light']) .p-splitter .p-splitter-gutter {
-  background-color: var(--md-sys-color-surface-container-hover);
 }
 
 :where(html[data-theme='light']) .p-splitter .p-splitter-gutter .p-splitter-gutter-handle,
@@ -1471,12 +1423,10 @@
 }
 
 :where(html[data-theme='light']) .p-confirm-popup:after {
-  border-color: var(--md-sys-color-surface-container)00;
   border-bottom-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-confirm-popup:before {
-  border-color: var(--md-sys-color-outline-variant)00;
   border-bottom-color: var(--md-sys-color-outline-variant);
 }
 
@@ -1488,12 +1438,7 @@
   border-top-color: var(--md-sys-color-outline-variant);
 }
 
-:where(html[data-theme='light']) .p-dialog {
-  border-color: var(--md-sys-color-outline-variant);
-}
-
 :where(html[data-theme='light']) .p-dialog .p-dialog-header {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -1507,12 +1452,10 @@
 }
 
 :where(html[data-theme='light']) .p-dialog .p-dialog-content {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
 
 :where(html[data-theme='light']) .p-dialog .p-dialog-footer {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -1532,12 +1475,7 @@
 }
 
 :where(html[data-theme='light']) .p-overlaypanel:after {
-  border-color: var(--md-sys-color-surface-container)00;
   border-bottom-color: var(--md-sys-color-surface-container);
-}
-
-:where(html[data-theme='light']) .p-overlaypanel:before {
-  border-color: var(--md-sys-color-outline-variant)00;
 }
 
 :where(html[data-theme='light']) .p-overlaypanel.p-overlaypanel-flipped:after {
@@ -1549,9 +1487,7 @@
 }
 
 :where(html[data-theme='light']) .p-sidebar {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
-  border-color: var(--md-sys-color-outline-variant);
 }
 
 :where(html[data-theme='light']) .p-sidebar .p-sidebar-header .p-sidebar-close,
@@ -1596,11 +1532,6 @@
   background-color: var(--md-sys-color-surface-container);
   border-color: var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface);
-}
-
-:where(html[data-theme='light']) .p-breadcrumb {
-  background-color: var(--md-sys-color-surface-container);
-  border-color: var(--md-sys-color-outline-variant);
 }
 
 :where(html[data-theme='light']) .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
@@ -1775,7 +1706,6 @@
 }
 
 :where(html[data-theme='light']) .p-menu {
-  background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
   border-color: var(--md-sys-color-outline-variant);
 }
@@ -1813,7 +1743,6 @@
 
 :where(html[data-theme='light']) .p-menu .p-submenu-header {
   color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container);
 }
 
 :where(html[data-theme='light']) .p-menu .p-menu-separator {
